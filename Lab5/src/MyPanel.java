@@ -17,6 +17,12 @@ public class MyPanel extends JPanel {
 	public int mouseDownGridX = 0;
 	public int mouseDownGridY = 0;
 	public Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
+	
+	private int value;
+    private int id;
+	
+    private Random generator = new Random();
+	
 	public MyPanel() {   //This is the constructor... this code runs first to initialize
 		if (INNER_CELL_SIZE + (new Random()).nextInt(1) < 1) {	//Use of "random" to prevent unwanted Eclipse warning
 			throw new RuntimeException("INNER_CELL_SIZE must be positive!");
@@ -35,9 +41,47 @@ public class MyPanel extends JPanel {
 		}
 		for (int x = 1; x < TOTAL_COLUMNS; x++) {   //The rest of the grid
 			for (int y = 1; y < TOTAL_ROWS; y++) {
+				//colorArray[x][y]
+				setValue(0);
 				colorArray[x][y] = Color.WHITE;
 			}
 		}
+		//Plant mines
+		for(int i =0; i <= 10;)
+		{
+			int x,y;
+			x = generator.nextInt(10);				
+			y = generator.nextInt(10);
+			Color j = colorArray[x][y];
+					
+			//Upper-Right Region
+			if( j.equals(colorArray[0][0]))
+			{
+				colorArray[x][y] = Color.LIGHT_GRAY;
+				
+			}		
+			//Lower-Right Region
+			if( j.equals(colorArray[0][y]))
+			{
+				colorArray[x][y] = Color.LIGHT_GRAY;
+				
+			}
+					
+			//Upper-Right
+			if( j.equals(colorArray[x][0]))
+			{
+				colorArray[x][y] = Color.LIGHT_GRAY;
+				
+			}
+					
+			else{
+				setValue(-1);
+				//colorArray[x][y] = Color.BLACK;
+				i++;
+			}
+				
+		}
+		
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -78,6 +122,8 @@ public class MyPanel extends JPanel {
 				}
 			}
 		}
+		
+		
 	}
 	public int getGridX(int x, int y) {
 		Insets myInsets = getInsets();
@@ -129,4 +175,22 @@ public class MyPanel extends JPanel {
 		}
 		return y;
 	}
+
+    public int getValue() {
+        return value;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+	
 }

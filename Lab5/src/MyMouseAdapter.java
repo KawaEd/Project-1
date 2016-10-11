@@ -121,17 +121,65 @@ public class MyMouseAdapter extends MouseAdapter {
 
 							int h = (myPanel.mouseDownGridY-1)*(10) + myPanel.mouseDownGridX;
 							
-							for (int i = 0; i <= 10; i++) {
-							    if (mines.contains(h)) {
-							    	myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
-									myPanel.repaint();
-							    } 
-							    else {
-							        break;
-							    }
-							}
+							// Around the selected block
+							int k = h - 11;  //Top left of mouse down
+							int l = h - 1;  //Center left of mouse down
+							int m = h + 9;  //Bottom left of mouse down
+							int n = h - 10;  //Top Center of mouse down
+							int o = h + 10;  //Bottom Center of mouse down
+							int p = h - 9;  //Top Right of mouse down
+							int q = h + 1;  //Center right of mouse down
+							int r = h + 11;  //Bottom right of mouse down
 							
 
+							if (mines.contains(h)) {
+							    myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
+								myPanel.repaint();
+							} 
+							    
+							else {
+								if ((mines.contains(k)&&(mines.contains(l)||mines.contains(m)||mines.contains(n)
+								    	||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r)))
+							    	
+							    	){
+									myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.YELLOW;
+									myPanel.repaint();
+									
+								}
+							    
+								else if((mines.contains(k)&&(mines.contains(l)||mines.contains(m)||mines.contains(n)
+								    	||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))) ||
+							    	(mines.contains(l)&&(mines.contains(k)||mines.contains(m)||mines.contains(n)
+										||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))) ||
+							    	(mines.contains(m)&&(mines.contains(k)||mines.contains(l)||mines.contains(n)
+										||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))) ||
+							    	(mines.contains(n)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
+										||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))) ||
+							    	(mines.contains(o)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
+										||mines.contains(n)||mines.contains(p)||mines.contains(q)||mines.contains(r))) ||
+							    	(mines.contains(p)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
+										||mines.contains(n)||mines.contains(o)||mines.contains(q)||mines.contains(r))) ||
+							    	(mines.contains(q)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
+										||mines.contains(n)||mines.contains(o)||mines.contains(p)||mines.contains(r))) ||
+							    	(mines.contains(r)&&(mines.contains(k)||mines.contains(l)||mines.contains(m)
+										||mines.contains(n)||mines.contains(o)||mines.contains(p)||mines.contains(q))) 
+							    		){
+								    	
+								    	myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.GREEN;
+										myPanel.repaint();
+								    		
+								    	}
+							    
+							    else if(mines.contains(k)||mines.contains(l)||mines.contains(m)||mines.contains(n)
+							    	||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r)){
+							    	
+							    	myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLUE;
+									myPanel.repaint();
+							    		
+							    	} 
+							    }
+							 break;
+		
 						}
 					}
 				}

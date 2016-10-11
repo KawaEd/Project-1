@@ -138,16 +138,16 @@ public class MyMouseAdapter extends MouseAdapter {
 							} 
 							    
 							else {
-								if ((mines.contains(k)&&(mines.contains(l)||mines.contains(m)||mines.contains(n)
-								    	||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r)))
-							    	
-							    	){
-									myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.YELLOW;
-									myPanel.repaint();
-									
-								}
+//								if ((mines.contains(k)&&(mines.contains(l)||mines.contains(m)||mines.contains(n)
+//								    	||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r)))
+//							    	
+//							    	){
+//									myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.YELLOW;
+//									myPanel.repaint();
+//									
+//								}
 							    
-								else if((mines.contains(k)&&(mines.contains(l)||mines.contains(m)||mines.contains(n)
+								if((mines.contains(k)&&(mines.contains(l)||mines.contains(m)||mines.contains(n)
 								    	||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))) ||
 							    	(mines.contains(l)&&(mines.contains(k)||mines.contains(m)||mines.contains(n)
 										||mines.contains(o)||mines.contains(p)||mines.contains(q)||mines.contains(r))) ||

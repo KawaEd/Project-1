@@ -3,6 +3,7 @@ import java.awt.Component;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -96,6 +97,8 @@ public class MyMouseAdapter extends MouseAdapter {
 			int y = e.getY();
 			myPanel.x = x;
 			myPanel.y = y;
+			ArrayList<Integer> mines = myPanel.mines;
+
 			int gridX = myPanel.getGridX(x, y);
 			int gridY = myPanel.getGridY(x, y);
 			
@@ -115,13 +118,19 @@ public class MyMouseAdapter extends MouseAdapter {
 							//On the left column and on the top row... do nothing
 						} else {
 							//On the grid other than on the left column and on the top row:
-							if(myPanel.getValue() == -1){
-								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
-								myPanel.repaint();
+
+							int h = (myPanel.mouseDownGridY-1)*(10) + myPanel.mouseDownGridX;
+							
+							for (int i = 0; i <= 10; i++) {
+							    if (mines.contains(h)) {
+							    	myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
+									myPanel.repaint();
+							    } 
+							    else {
+							        break;
+							    }
 							}
-							else{
-								
-							}
+							
 
 						}
 					}
